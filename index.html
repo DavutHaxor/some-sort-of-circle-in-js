@@ -8,7 +8,7 @@
     .circle {
         width: 500px;
         height: 500px;
-        border: 1px solid;
+        border: 1px;
         background-color: blue;
         border-radius: 100%;
 
@@ -62,7 +62,7 @@ var heightStart = parseInt(temph);
 timeout1 = setTimeout(function() {
     shrink(widthStart, heightStart, speed);
   }, 5);
-}
+}   
 
 function shrink(width, height, speed) {
 width -= speed;
