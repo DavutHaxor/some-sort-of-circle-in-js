@@ -1,21 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Page 2</title>
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Styled Number Input</title>
+  <style>
+    /* Styles for the custom input container */
+    .custom-number-input {
+      position: relative;
+    }
 
+    /* Styles for the number input */
+    .custom-number-input input {
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+
+    /* Styles for the up and down arrows */
+    .custom-number-input button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      padding: 5px;
+      background-color: #e0e0e0;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
 <body>
 
-    <a href="index.html" target="_self">
-        <button style="font-size: 50px; font-family:Georgia, 'Times New Roman', Times, serif; transform: translate(850px) translateY(425px); background-color: #313131; color: yellow; border-radius: 45%;"> Go Back </button>
-    </a>
+<div class="custom-number-input">
+  <input type="number" min="0" max="100" value="50">
+  <button onclick="increment()">▲</button>
+  <button onclick="decrement()">▼</button>
+</div>
+
+<script>
+  function increment() {
+    var input = document.querySelector('.custom-number-input input');
+    input.stepUp();
+  }
+
+  function decrement() {
+    var input = document.querySelector('.custom-number-input input');
+    input.stepDown();
+  }
+</script>
 
 </body>
-
-
-
-
-
-
-
 </html>

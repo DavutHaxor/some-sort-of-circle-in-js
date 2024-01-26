@@ -17,7 +17,7 @@
     .container {
         width: 1900px;
         height: 975px;
-        border: 1px solid;
+        border: 1px;
         border-color: black;
         display: flex;
         justify-content: center;
@@ -28,11 +28,14 @@
     </style>
 </head>
 
-<body>
-<input type="number" id="speed" value="1"> Set Speed </input>
+<body id="body" style="background-color: #0E1011;">
+
+<button id="button" style="color: white; background-color: #0E1011; border-color: white; border: 0;" onclick="mode()">Light Mode</button>
+
+<input type="number" id="speed" value="1" style="background-color: #252525; color: white; border-color: #0E1011;"> <b id="text2" style="color: white;">Set Speed </b> </input>
 
 <div class="container" id="container">
-    <div class="circle" id="circle" onmouseenter="enter()" onmouseleave="leave()"> </div>
+    <div class="circle" id="circle" onmouseenter="enter()" onmouseleave="leave()" onclick="stop()"> </div>
 </div>
 
 
@@ -41,7 +44,40 @@
 var circle = document.getElementById("circle");
 var timeout1;
 var timeout2;
+var x = 2;
+var y = 2;
+function stop() {
 
+clearTimeout(timeout1)
+clearTimeout(timeout2)
+
+if (y % 2 == 0) {
+circle.onmouseleave = clearTimeout(timeout2)
+timeout1 = setTimeout(() => {
+  circle.onmouseleave = leave
+}, 1000);
+}
+
+
+}
+
+function mode() {
+  if (x % 2 == 0) {
+    document.getElementById("button").style = "color: #0E1011; background-color: white; border: 0;"
+    document.getElementById("text2").style = "color: #0E1011;"
+    document.getElementById("body").style = "background-color: white;"
+    document.getElementById("speed").style = "background-color: white; color: black; border-color: white;"
+
+  }
+
+  if (x % 2 == 1) {
+    document.getElementById("button").style = "color: white; background-color: #0E1011; border: 0;"
+    document.getElementById("body").style = "background-color: #0E1011;"
+    document.getElementById("text2").style = "color: white;"
+    document.getElementById("speed").style = "background-color: #252525; color: white; border-color: #0E1011;"
+  }
+  x += 1;
+}
 
 
 function enter() {
