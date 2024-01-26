@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" type="image/.ico" href="https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/meta-icons/rockstar/favicon.ico">
+    <title>My Webpage</title>
+    <style>
+    .circle {
+        width: 500px;
+        height: 500px;
+        border: 1px solid;
+        background-color: blue;
+        border-radius: 100%;
+
+    }
+
+    .container {
+        width: 1900px;
+        height: 975px;
+        border: 1px solid;
+        border-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    </style>
+</head>
+
+<body>
+<input type="number" id="speed" value="1"> Set Speed </input>
+
+<div class="container" id="container">
+    <div class="circle" id="circle" onmouseenter="enter()" onmouseleave="leave()"> </div>
+</div>
+
+
+
+<script>
+var circle = document.getElementById("circle");
+var timeout1;
+var timeout2;
+
+
+
+function enter() {
+clearTimeout(timeout2)
+
+var speedElement = document.getElementById("speed");
+var speed = parseInt(speedElement.value);
+
+var temp1 = window.getComputedStyle(circle).width;
+var temp2 = window.getComputedStyle(circle).height;
+
+var tempw = temp1.replace("px", "");
+var temph = temp2.replace("px", "");
+
+var widthStart = parseInt(tempw);
+var heightStart = parseInt(temph);
+
+timeout1 = setTimeout(function() {
+    shrink(widthStart, heightStart, speed);
+  }, 5);
+}
+
+function shrink(width, height, speed) {
+width -= speed;
+height -= speed;
+circle.style.width = width + "px";
+circle.style.height = height + "px";
+
+
+if (width > 0 && height > 0) {
+    timeout1 = setTimeout(function() {
+      shrink(width, height, speed);
+    }, 5);
+  }
+}
+
+function leave() {
+clearTimeout(timeout1)
+
+var speedElement = document.getElementById("speed");
+var speed = parseInt(speedElement.value);
+
+var temp1 = window.getComputedStyle(circle).width;
+var temp2 = window.getComputedStyle(circle).height;
+
+var tempw = temp1.replace("px", "");
+var temph = temp2.replace("px", "");
+
+var widthStart = parseInt(tempw);
+var heightStart = parseInt(temph);
+
+timeout2 = setTimeout(function() {
+    expand(widthStart, heightStart, speed);
+  }, 5);
+
+}
+
+function expand(width, height, speed) {
+width += speed;
+height += speed;
+circle.style.width = width + "px";
+circle.style.height = height + "px";
+
+
+if (width > 0 && height > 0) {
+    timeout2 = setTimeout(function() {
+      expand(width, height, speed);
+    }, 5);
+  }
+}
+
+
+</script>
+
+</body>
+
+</html>
